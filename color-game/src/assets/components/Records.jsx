@@ -28,6 +28,20 @@ const Records = () => {
         return () => socket.off('allRecords', handleDataAll);
     }, [socket]);
 
+    // Function to get color for result
+    const getColorForResult = (result) => {
+        switch (result) {
+            case 'red':
+                return '#ff0000';
+            case 'green':
+                return '#006600';
+            case 'violet':
+                return '#8B008B';
+            default:
+                return '#666666';
+        }
+    };
+
     return (
         <div>
             <div className='d-flex justify-content-between fw-bold bg-white px-2 py-2 rounded'>
@@ -49,10 +63,12 @@ const Records = () => {
                         <div style={{
                             height: '1.5rem',
                             width: '1.5rem',
-                            backgroundColor: data.result === 'green' ? '#006600' : '#ff0000',
+                            backgroundColor: getColorForResult(data.result),
                             borderRadius: '50%',
                             marginLeft: '-2rem',
-                        }}>{data.result}</div>
+                            border: '2px solid #fff',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                        }}></div>
                         <div>{data.price}</div>
                     </div>
                 ))

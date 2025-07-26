@@ -4,8 +4,14 @@ const timerController = require("../controllers/timerController");
 const myCache = require('./myCache')
 
 const performAction = async (io) => {
-    console.log('Action performed every 2 minutes');
-    await timerController()
+    console.log('🔄 performAction called with io:', !!io);
+    console.log('⏰ Action performed every 2 minutes');
+    try {
+        await timerController(io)  // io parameter pass करें
+        console.log('✅ timerController completed');
+    } catch (error) {
+        console.log('❌ timerController error:', error);
+    }
     sendAllData(io)
 };
 
@@ -14,6 +20,7 @@ let seconds = 0;
 
 // Function to start the countdown
 const startCountdown = (io) => {
+    console.log('🚀 startCountdown called with io:', !!io);
     const countdownInterval = setInterval(() => {
         if (seconds === 0) {
             seconds = 59;
@@ -21,10 +28,9 @@ const startCountdown = (io) => {
                 minutes--;
             } else {
                 // Perform action every 2 minutes
+                console.log('⏰ Countdown finished, calling performAction');
                 performAction(io);
                 minutes = 1; // Reset minutes to 2 for the next cycle
-
-
             }
         } else {
             seconds--;

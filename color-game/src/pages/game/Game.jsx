@@ -216,9 +216,77 @@ const Game = () => {
                 {/* color prediction button */}
 
                 <div className='d-flex p-3 px-3 bg-white my-3 justify-content-between rounded '>
-                    <button style={{ backgroundColor: '#E9FCE9', color: 'green' }} onClick={() => { setcolor("green"); setDrawer(true) }}  >Green</button>
-                    <button style={{ backgroundColor: '#FEF6FE', color: 'voilet' }} onClick={() => { setcolor("voilet"); setDrawer(true) }} >Violet</button>
-                    <button style={{ backgroundColor: '#FFF5F5', color: 'red' }} onClick={() => { setcolor("red"); setDrawer(true) }} >Red</button>
+                    <button 
+                        style={{ 
+                            backgroundColor: '#E9FCE9', 
+                            border: '2px solid #006600',
+                            borderRadius: '50%',
+                            width: '60px',
+                            height: '60px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer'
+                        }} 
+                        onClick={() => { setcolor("green"); setDrawer(true) }}
+                    >
+                        <div style={{
+                            width: '40px',
+                            height: '40px',
+                            backgroundColor: '#006600',
+                            borderRadius: '50%',
+                            border: '2px solid #fff',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                        }}></div>
+                    </button>
+                    
+                    <button 
+                        style={{ 
+                            backgroundColor: '#FEF6FE', 
+                            border: '2px solid #8B008B',
+                            borderRadius: '50%',
+                            width: '60px',
+                            height: '60px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer'
+                        }} 
+                        onClick={() => { setcolor("violet"); setDrawer(true) }}
+                    >
+                        <div style={{
+                            width: '40px',
+                            height: '40px',
+                            backgroundColor: '#8B008B',
+                            borderRadius: '50%',
+                            border: '2px solid #fff',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                        }}></div>
+                    </button>
+                    
+                    <button 
+                        style={{ 
+                            backgroundColor: '#FFF5F5', 
+                            border: '2px solid #ff0000',
+                            borderRadius: '50%',
+                            width: '60px',
+                            height: '60px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer'
+                        }} 
+                        onClick={() => { setcolor("red"); setDrawer(true) }}
+                    >
+                        <div style={{
+                            width: '40px',
+                            height: '40px',
+                            backgroundColor: '#ff0000',
+                            borderRadius: '50%',
+                            border: '2px solid #fff',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                        }}></div>
+                    </button>
                 </div>
 
                 {/* Records Parity */}

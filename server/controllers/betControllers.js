@@ -4,9 +4,8 @@ const myCache = require('../helper/myCache')
 
 const userBetController = async (req, res) => {
     try {
-        const countPeriod1 = await myCache.get('countPeriods');
-        const countPeriod = await myCache.get('countPeriods') + 1;
-        console.log('---->:1:', countPeriod1, countPeriod)
+        const countPeriod = await myCache.get('countPeriods');
+        console.log('🎲 Bet placed for period:', countPeriod);
         const { userId } = req.params;
         const { color, betAmount } = req.body;
 
@@ -17,7 +16,7 @@ const userBetController = async (req, res) => {
                 message: 'All fields are required'
             });
         }
-        // console.log('clgdone', countperiod)
+        
         // Find user by ID and check wallet balance
         const user = await UserModel.findById(userId);
         if (!user) {
@@ -37,14 +36,12 @@ const userBetController = async (req, res) => {
         // Deduct bet amount from user's wallet
         user.wallet -= betAmount;
         await user.save();
+        console.log('💰 Deducted', betAmount, 'from user', userId, 'New balance:', user.wallet);
 
         // Create new user bet document
         const userBet = new BetModel({ userId, color, betAmount, period: countPeriod });
         await userBet.save();
-
-        // Emit wallet balance update event
-        const newBalance = user.wallet;
-
+        console.log('💾 Bet saved for period:', countPeriod, 'Color:', color, 'Amount:', betAmount);
 
         res.status(200).json({
             success: true,

@@ -9,8 +9,7 @@ const router = require('./Routes/UserRoutes');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-const DbConnect = require('./config');
-DbConnect(); // Connect to the database
+require('./config'); // Connect to the database
 const betRouter = require('./Routes/bet-router')
 const { startCountdown, performAction } = require('./helper/Helper');
 const findUserBalance = require('./controllers/findUserBalance');
