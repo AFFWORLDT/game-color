@@ -42,7 +42,10 @@ io.on('connection', (socket) => {
     });
 });
 
-startCountdown(io); // Start the countdown timer
+// Start the countdown timer with async initialization
+(async () => {
+    await startCountdown(io);
+})();
 // performAction(io)
 
 
